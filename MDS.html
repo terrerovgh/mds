@@ -33,6 +33,11 @@
       </div>
 
       <div class="content">
+        <div class="api-key-container">
+          <input type="text" id="api-key">
+          <button id="set-api-key">set api key</button></div>
+        <div class="chatbox">
+          <div class="chat-messages"></div></div>
 
         <ul>
           <li>
@@ -53,7 +58,7 @@
                 <h3 class="visually-hidden">VIP Signup Form</h3>
             
                 <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert" role="alert" aria-live="polite"></ul>
-                <div data-element="fields" data-stacked="false" class="formkit-fields" role="group" aria-label="Form fields">
+                  <div data-element="fields" data-stacked="false" class="formkit-fields" role="group" aria-label="Form fields">
                   <div class="formkit-field">
                     <label for="first_name" class="visually-hidden">First name</label>
                     <input type="text" id="first_name" name="fields[first_name]" placeholder="Name" aria-required="true" required="" class="formkit-input" aria-label="Name">
@@ -67,6 +72,10 @@
               </div>
             </form>
           </li>
+        </ul>
+        <input type="text" id="user-input">
+        <button id="send-button">Send</button>
+        
         </ul>
 
         <ul>

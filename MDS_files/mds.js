@@ -932,3 +932,60 @@ function scrambleAsciiArt(isEncrypting) {
     }
   }
 }
+
+//Chat Agent
+let geminiApiKey = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sendButton = document.getElementById('send-button');
+  const userInput = document.getElementById('user-input');
+  const chatMessages = document.querySelector('.chat-messages');
+  const setApiKeyButton = document.getElementById('set-api-key');
+  const apiKeyInput = document.getElementById('api-key');
+
+  setApiKeyButton.addEventListener('click', () => {
+    geminiApiKey = apiKeyInput.value.trim();
+  });
+
+  async function getGeminiResponse(userMessage) {
+      if (userMessage.toLowerCase().includes("curriculum") || userMessage.toLowerCase().includes("cv")) {
+        const cvLink = document.createElement('a');
+        cvLink.href = 'cv.txt';
+        cvLink.download = 'cv.txt';
+        cvLink.textContent = 'Download CV';
+        return cvLink;
+      } else {
+        if (!geminiApiKey) {
+          return 'API key not set. Please set the API key.';
+        }
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey}`;
+          const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text: userMessage }] }] }) });
+          const data = await response.json();
+          return data.candidates[0].content.parts[0].text;
+        } catch (error) {
+          console.error('Error fetching Gemini response:', error);
+          return 'Error getting response from Gemini API.';
+        }
+      }
+    }
+  }
+
+  sendButton.addEventListener('click', () => {
+    const message = userInput.value.trim();
+    if (message !== '') {
+      const newMessage = document.createElement('div');
+      newMessage.classList.add('user-message');
+      newMessage.textContent = message;
+      chatMessages.appendChild(newMessage);
+      userInput.value = '';
+      getGeminiResponse(message).then((response) => {
+        const agentResponse = document.createElement('div');
+        agentResponse.classList.add('agent-message');
+        if (typeof response === 'string') agentResponse.textContent = response;
+        else agentResponse.appendChild(response);
+        chatMessages.appendChild(agentResponse);
+      });
+    }
+  });
+});

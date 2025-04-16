@@ -504,6 +504,29 @@ button.hover-effect .scrambled {
   image-rendering: pixelated;
 }
 
+/* API Key Container Styles */
+.api-key-container {
+  margin: 20px auto;
+  text-align: center;
+}
+
+#api-key {
+  width: 70%;
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#set-api-key {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 5px;
+}
 /* HR styles */
 hr {
   border: none;
@@ -511,4 +534,61 @@ hr {
   background: var(--color-surface);
   margin: 2rem 0;
   width: 100%;
+}
+
+/* Chatbox Styles */
+.chatbox {
+  width: 80%;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  min-height: 200px;
+}
+
+.chat-messages {
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+#user-input {
+  width: 70%;
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: none;
+  color: black;
+}
+
+#send-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* Chat Message Styles */
+.user-message {
+  background-color: #DCF8C6;
+  text-align: right;
+  margin: 5px 0;
+  padding: 5px 10px;
+  border-radius: 10px;
+  max-width: 70%;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.agent-message {
+  background-color: #eee;
+  text-align: left;
+  margin: 5px 0;
+  padding: 5px 10px;
+  border-radius: 10px;
+  max-width: 70%;
 }
